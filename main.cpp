@@ -20,11 +20,9 @@ int * splittoi(const string& str, int n) {
     return arr;
 }
 
-int main() {
+int main(int argc, char** argv) {
+    ifstream in(argv[1]);
     size_t N;
-
-    ifstream in("/Users/irusland/Desktop/UrFU/C++/lab1/in.txt");
-//    ifstream in("/Users/irusland/Desktop/UrFU/C++/lab1/6n3comp.txt");
 
     if (!in) {
         cout << "Cannot open input file" << std::endl;
@@ -47,7 +45,7 @@ int main() {
     in.close();
 
     int v = -1;
-    for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; ++i) { // поиск свежей вершины
         if (matrix[i][i] == 0) {
             v = i;
             break;
@@ -71,7 +69,7 @@ int main() {
             }
         }
         v = -1;
-        for (int i = 0; i < N; ++i) {
+        for (int i = 0; i < N; ++i) { // поиск свежей вершины
             if (matrix[i][i] == 0) {
                 v = i;
                 break;
@@ -79,21 +77,13 @@ int main() {
         }
     }
 
-    // debug matrix
-//    for (int i = 0; i < N; ++i) {
-//        for (int j = 0; j < N; ++j) {
-//            cout << matrix[i][j];
-//        }
-//        cout << endl;
-//    }
-
     // колличество компонент
     cout << counter << endl;
 
     for (int k = 1; k <= counter; ++k) {
         for (int i = 0; i < N; ++i) {
             if (matrix[i][i] == k) {
-                cout << i + 1; // вершина в компоненте k
+                cout << i + 1 << " "; // вершина в компоненте k
             }
         }
         cout << 0 << endl;
